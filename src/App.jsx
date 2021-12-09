@@ -21,14 +21,14 @@ function App() {
 
   const [data, setData] = useState([
     {
-      username: 'Vitalic Buterin',
-      email: 'vitalic@gmail.com',
-      experience: 'user',
+      username: 'Pabo Bernando',
+      email: 'pabo@gmail.com',
+      experience: 'Super User',
       level: 90
     },
     {
-      username: 'Gavin Wood',
-      email: 'gavinwood@gmail.com',
+      username: 'Bernando',
+      email: 'bernando@gmail.com',
       experience: 'user',
       level: 99
     },
@@ -88,10 +88,12 @@ function App() {
           </div>
         </div>
 
+        
+
         {
           data?.map((data, index) => {
             return(
-                <div className="row text-center mt-5 border border-primary" key="{data.email}">
+                <div className="row text-center mt-5 border border-primary text-white" key="{data.email}">
                   <p>username: {data.username}</p>
                   <p>email: {data.email}</p>
                   <p>experience: {data.experience}</p>
@@ -103,7 +105,12 @@ function App() {
             )
           })
         }
+          <div className="col text-center mt-5 text-white">
+            <h1>Pabo Bernando</h1>
+          </div>
       </div>
+
+      
     </>
   );
 }
