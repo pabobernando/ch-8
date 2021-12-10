@@ -1,6 +1,6 @@
 #root{
   background-color: black;
-  height:990px;
+  height:990px auto;
 }
 
 .test{
@@ -12,4 +12,8 @@
   border: 1px solid white;
   width: 100px;
   height: 100px;
+}
+
+.reactlogo{
+  width: 300px;
 }

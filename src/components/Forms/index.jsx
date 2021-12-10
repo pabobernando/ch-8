@@ -5,16 +5,11 @@ import {
   Form
 } from "react-bootstrap"
 
-// object form terdiri dari
-// username: 'Vitalic Buterin',
-// email: 'vitalic@gmail.com',
-// experience: 'user',
-// level: 90
-
 const AddModal = ({
   show,
   handleAddModal,
   handleSubmitAdd,
+  handleDeleteModal,
   form
 }) => {
   const [username, setUsername] = useState('')
@@ -83,7 +78,38 @@ const EditModal = () => {
 
 }
 
+const DeleteModal = ({
+  id,
+  show,
+  handleDeleteModal,
+  handleSubmitDelete
+}) => {
+  return(
+    <>
+      <Modal show={show} onHide={handleDeleteModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Form Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <Form>
+            Are you sure to delete this?
+            </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleDeleteModal}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={() => handleSubmitDelete()}>
+            Yes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  )
+}
+
 export {
   AddModal,
-  EditModal
+  EditModal,
+  DeleteModal
 }

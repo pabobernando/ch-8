@@ -3,6 +3,7 @@ import './App.css'
 import MyNavbar from './components/Navbar'
 import {
   AddModal,
+  DeleteModal,
   EditModal
 } from './components/Forms'
 import { useState } from 'react'
@@ -11,6 +12,7 @@ import { useState } from 'react'
 
 function App() {
   const [showAddModal, setAddShowModal] = useState(false)
+  const [showDeleteModal,setDeleteShowModal] = useState(false)
   const [form, setForm] = useState({
     index: null,
     username: '',
@@ -34,14 +36,19 @@ function App() {
     },
   ])
 
-  // 1. cari item tsb, dengan index
-  // 2. ubah item
+  const {id, setId} = useState(null)
+
+  const handleDeleteModal = (index) => {
+    
+    setDeleteShowModal (!showDeleteModal)
+  }
 
   const handleEdit = (index) => {
     setForm({ ...data[index], index })
     setAddShowModal(!showAddModal)
   }
   
+
   const handleAddModal = () => {
     setForm({
       index: null,
@@ -72,6 +79,14 @@ function App() {
     setAddShowModal(!showAddModal)
   }
 
+  const handleSubmitDelete = (idData) => {
+    let temp = data
+
+    temp.filter((data, index) => index !== idData)
+
+    setData(temp)
+  }
+
   return (
     <>
     <MyNavbar/>
@@ -81,17 +96,24 @@ function App() {
       handleSubmitAdd={handleSubmitAdd}
       form={form}
     />
+
+    <DeleteModal
+    id={id}
+    show={showDeleteModal}
+    handleDeleteModal={handleDeleteModal}
+    handleSubmitDelete={handleSubmitDelete}
+    />
     <div className="container">
         <div className="row mt-3">
           <div className="col-6 text-start">
-            <button type="button" className="btn btn-primary" onClick={handleAddModal}>Tambah Data</button>
+            <button type="button" className="btn btn-primary" onClick={handleAddModal}>Tambah Data </button>
           </div>
         </div>
 
         
 
         {
-          data?.map((data, index) => {
+          data?.map((data, index) => { 
             return(
                 <div className="row text-center mt-5 border border-primary text-white" key="{data.email}">
                   <p>username: {data.username}</p>
@@ -99,14 +121,20 @@ function App() {
                   <p>experience: {data.experience}</p>
                   <p>level: {data.level}</p>
                   <div className="col text-center">
+                    <p>
                     <button type="button" className="btn btn-primary rounded" onClick={() => handleEdit(index)}>Edit Data</button>
+                    </p>
+                    <p>
+                    <button type="button" className="btn btn-danger rounded" onClick={() => handleDeleteModal(index)}>Delete Data</button>
+                    </p>
                   </div>
                 </div>
             )
           })
         }
           <div className="col text-center mt-5 text-white">
-            <h1>Pabo Bernando</h1>
+            {/* <h1>Pabo Bernando</h1> */}
+            <img src={logo} className="reactlogo"/>
           </div>
       </div>
 
