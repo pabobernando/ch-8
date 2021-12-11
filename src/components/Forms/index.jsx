@@ -79,7 +79,7 @@ const EditModal = () => {
 }
 
 const DeleteModal = ({
-  id,
+  index,
   show,
   handleDeleteModal,
   handleSubmitDelete
@@ -99,7 +99,7 @@ const DeleteModal = ({
           <Button variant="secondary" onClick={handleDeleteModal}>
             Cancel
           </Button>
-          <Button variant="danger" onClick={() => handleSubmitDelete()}>
+          <Button variant="danger" onClick={() => handleSubmitDelete(index)}>
             Yes
           </Button>
         </Modal.Footer>

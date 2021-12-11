@@ -13,6 +13,7 @@ import { useState } from 'react'
 function App() {
   const [showAddModal, setAddShowModal] = useState(false)
   const [showDeleteModal,setDeleteShowModal] = useState(false)
+  const [indexDeleted, setIndex] = useState(null)
   const [form, setForm] = useState({
     index: null,
     username: '',
@@ -39,7 +40,7 @@ function App() {
   const {id, setId} = useState(null)
 
   const handleDeleteModal = (index) => {
-    
+    setIndex(index)
     setDeleteShowModal (!showDeleteModal)
   }
 
@@ -79,13 +80,14 @@ function App() {
     setAddShowModal(!showAddModal)
   }
 
-  const handleSubmitDelete = (idData) => {
-    let temp = data
-
-    temp.filter((data, index) => index !== idData)
-
-    setData(temp)
+  const handleSubmitDelete = (index) => {
+    console.log(index)
+    const temp = data.splice(index,1)
+    setData (temp)
+    setDeleteShowModal (false)
   }
+  
+
 
   return (
     <>
@@ -98,10 +100,10 @@ function App() {
     />
 
     <DeleteModal
-    id={id}
-    show={showDeleteModal}
-    handleDeleteModal={handleDeleteModal}
-    handleSubmitDelete={handleSubmitDelete}
+      index={indexDeleted}
+      show={showDeleteModal}
+      handleDeleteModal={handleDeleteModal}
+      handleSubmitDelete={handleSubmitDelete}
     />
     <div className="container">
         <div className="row mt-3">

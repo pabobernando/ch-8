@@ -3,8 +3,6 @@ const Player = db.players;
 const Op = db.Sequelize.Op;
 
 const LEVEL_BAR = 1000; // length of experience per level. Once experience reach multiple of this, the level increases.
-
-// Create new player
 exports.create = (req, res) => {
   if (!req.body.username || !req.body.email || !req.body.password) {
     res.status(400).json({
