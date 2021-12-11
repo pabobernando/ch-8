@@ -4,7 +4,9 @@
   "description": "Binar Academy Bootcamp challenge chapter 8",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node app.js",
+    "start:gen" : "node swagger-autogen.js"
   },
   "keywords": [],
   "author": "yogisaputro",
